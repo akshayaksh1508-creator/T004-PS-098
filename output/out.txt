@@ -1,0 +1,279 @@
+[OK] Union registered: U001 – Mandya District Milk Union
+[OK] Society registered: SOC001 – Belakavadi Milk Society
+[OK] Society registered: SOC002 – Maddur Milk Society
+[OK] Rate chart registered: COW-2024 (COW)
+[OK] Rate chart registered: BUF-2024 (BUFFALO)
+[OK] Member registered: M001 – Ramesh Kumar
+[OK] Member registered: M002 – Suresh Patil
+[OK] Member registered: M003 – Kavitha Devi
+[OK] Member registered: M004 – Basavaraj Gowda
+[OK] Member registered: M005 – Latha Naik
+[POURING] P0001 | M001 | AM | 12.0L | Fat=4.00% SNF=8.60% | Price=Rs35.30/L | Gross=Rs423.60 | ACCEPTED
+[POURING] P0002 | M001 | PM | 10.5L | Fat=4.10% SNF=8.50% | Price=Rs35.60/L | Gross=Rs373.80 | ACCEPTED
+[POURING] P0003 | M001 | AM | 11.5L | Fat=3.90% SNF=8.40% | Price=Rs34.10/L | Gross=Rs392.15 | ACCEPTED
+[POURING] P0004 | M001 | PM | 10.0L | Fat=4.20% SNF=8.50% | Price=Rs36.20/L | Gross=Rs362.00 | ACCEPTED
+[POURING] P0005 | M001 | AM | 12.5L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs437.50 | ACCEPTED
+[POURING] P0006 | M001 | PM | 11.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs385.00 | ACCEPTED
+[POURING] P0007 | M001 | AM | 10.5L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs367.50 | ACCEPTED
+[POURING] P0008 | M001 | PM | 11.5L | Fat=4.10% SNF=8.50% | Price=Rs35.60/L | Gross=Rs409.40 | ACCEPTED
+[POURING] P0009 | M001 | AM | 12.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs420.00 | ACCEPTED
+[POURING] P0010 | M001 | PM | 10.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs350.00 | ACCEPTED
+[POURING] P0011 | M001 | AM | 12.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs420.00 | ACCEPTED
+[POURING] P0012 | M001 | PM | 11.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs385.00 | ACCEPTED
+[POURING] P0013 | M001 | AM | 10.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs350.00 | ACCEPTED
+[POURING] P0014 | M001 | PM | 11.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs385.00 | ACCEPTED
+[POURING] P0015 | M001 | AM | 12.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs420.00 | ACCEPTED
+[POURING] P0016 | M001 | PM | 11.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs385.00 | ACCEPTED
+[POURING] P0017 | M001 | AM | 12.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs420.00 | ACCEPTED
+[POURING] P0018 | M001 | PM | 11.0L | Fat=4.00% SNF=8.50% | Price=Rs35.00/L | Gross=Rs385.00 | ACCEPTED
+[POURING] P0019 | M002 | AM | 8.0L | Fat=6.20% SNF=9.10% | Price=Rs49.60/L | Gross=Rs396.80 | ACCEPTED
+[POURING] P0020 | M002 | PM | 7.5L | Fat=6.00% SNF=9.00% | Price=Rs48.00/L | Gross=Rs360.00 | ACCEPTED
+[POURING] P0021 | M003 | AM | 9.0L | Fat=3.80% SNF=8.30% | Price=Rs33.20/L | Gross=Rs298.80 | ACCEPTED
+[DISPUTE] D001 filed: PENDING
+[DISPUTE] D001 resolved: ACCEPTED | Retest=4.10 Original=3.80
+[POURING] P0022 | M003 | REJECTED | Adulteration positive (BR-08)
+[POURING] P0023 | M003 | REJECTED | Member suspended until 2024-10-09 (BR-08)
+[POURING] P0024 | M001 | REJECTED | Fat 2.8% below minimum 3.0% (BR-01)
+[SOUR RETURN] Can CAN002 | 4 pourings reversed | Society SOC001 has 1 return-day(s) this cycle
+
+================================================================================
+                           DAILY COLLECTION REGISTER                            
+================================================================================
+  Society : SOC001 – Belakavadi Milk Society
+  Date    : 01-Oct-2024
+================================================================================
+  PouringID      MemberID     Shift   Litres   Fat%   SNF%  Temp°C   Price/L   Gross(Rs) Status      
+--------------------------------------------------------------------------------
+  P0001          M001         AM        12.0   4.00   8.60     8.5     35.30      423.60 ACCEPTED    
+  P0019          M002         AM         8.0   6.20   9.10     9.0     49.60      396.80 ACCEPTED    
+  P0021          M003         AM         9.0   4.10   8.30     8.0     35.00      315.00 ACCEPTED    
+  P0002          M001         PM        10.5   4.10   8.50     9.0     35.60      373.80 ACCEPTED    
+  P0020          M002         PM         7.5   6.00   9.00     9.5     48.00      360.00 ACCEPTED    
+--------------------------------------------------------------------------------
+  Accepted Pourings: 5   Total Litres: 47.0   Total Value: Rs 1869.20
+================================================================================
+
+============================================================
+  CYCLE CLOSE: 2024-10-C1 (2024-10-01 to 2024-10-10)
+============================================================
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M001
+  Name        : Ramesh Kumar
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 13-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+  01-Oct-2024  AM        12.0   4.00   8.60     35.30     423.60 ACCEPTED    
+  01-Oct-2024  PM        10.5   4.10   8.50     35.60     373.80 ACCEPTED    
+  02-Oct-2024  AM        11.5   3.90   8.40     34.10     392.15 ACCEPTED    
+  02-Oct-2024  PM        10.0   4.20   8.50     36.20     362.00 ACCEPTED    
+  03-Oct-2024  AM        12.5   4.00   8.50     35.00     218.75 REVERSED    
+  03-Oct-2024  PM        11.0   4.00   8.50     35.00     192.50 REVERSED    
+  04-Oct-2024  AM        10.5   4.00   8.50     35.00     183.75 REVERSED    
+  04-Oct-2024  PM        11.5   4.10   8.50     35.60     204.70 REVERSED    
+  05-Oct-2024  AM        12.0   4.00   8.50     35.00     420.00 ACCEPTED    
+  05-Oct-2024  PM        10.0   4.00   8.50     35.00     350.00 ACCEPTED    
+  06-Oct-2024  AM        12.0   4.00   8.50     35.00     420.00 ACCEPTED    
+  06-Oct-2024  PM        11.0   4.00   8.50     35.00     385.00 ACCEPTED    
+  07-Oct-2024  AM        10.0   4.00   8.50     35.00     350.00 ACCEPTED    
+  07-Oct-2024  PM        11.0   4.00   8.50     35.00     385.00 ACCEPTED    
+  08-Oct-2024  AM        12.0   4.00   8.50     35.00     420.00 ACCEPTED    
+  08-Oct-2024  PM        11.0   4.00   8.50     35.00     385.00 ACCEPTED    
+  09-Oct-2024  AM        12.0   4.00   8.50     35.00     420.00 ACCEPTED    
+  09-Oct-2024  PM        11.0   4.00   8.50     35.00     385.00 ACCEPTED    
+  10-Oct-2024  AM         5.0   2.80   8.00      0.00       0.00 REJECTED    
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :      156.0
+  Gross Pouring Value                : Rs    5471.55
+  Shifts Poured / Available          : 14 / 20
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs    5471.55
+================================================================================
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M002
+  Name        : Suresh Patil
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 13-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+  01-Oct-2024  AM         8.0   6.20   9.10     49.60     396.80 ACCEPTED    
+  01-Oct-2024  PM         7.5   6.00   9.00     48.00     360.00 ACCEPTED    
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :       15.5
+  Gross Pouring Value                : Rs     756.80
+  Shifts Poured / Available          : 2 / 20
+  (-) Feed Advance Recovery (20%)    : Rs     151.36
+  (-) Loan EMI Recovery              : Rs     105.44
+      Loan Balance Carried Forward   : Rs     375.00
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs     500.00
+================================================================================
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M003
+  Name        : Kavitha Devi
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 13-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+  01-Oct-2024  AM         9.0   4.10   8.30     35.00     315.00 ACCEPTED    
+  02-Oct-2024  AM         9.0   4.00   8.50      0.00       0.00 REJECTED    
+  05-Oct-2024  AM         9.0   4.00   8.50      0.00       0.00 REJECTED    
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :        9.0
+  Gross Pouring Value                : Rs     315.00
+  Shifts Poured / Available          : 1 / 20
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs     315.00
+================================================================================
+
+================================================================================
+                            SOCIETY SETTLEMENT SHEET                            
+================================================================================
+  Society ID  : SOC001
+  Name        : Belakavadi Milk Society
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Distance    : 22 km from chilling centre
+================================================================================
+  Total Member Gross Pouring Value : Rs      6543.35
+  Total Litres Accepted            :           180.5
+  -------------------------------------------------------
+  Commission (2.5% of gross)       : Rs       163.58
+  Handling Fee (Rs 0.20/litre)     : Rs        36.10
+  Transport Subsidy (Rs 0.15/L)    : Rs        27.08
+  =======================================================
+  NET PAYABLE TO SOCIETY           : Rs       226.76
+================================================================================
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M004
+  Name        : Basavaraj Gowda
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 13-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :        0.0
+  Gross Pouring Value                : Rs       0.00
+  Shifts Poured / Available          : 0 / 0
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs       0.00
+================================================================================
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M005
+  Name        : Latha Naik
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 13-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :        0.0
+  Gross Pouring Value                : Rs       0.00
+  Shifts Poured / Available          : 0 / 0
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs       0.00
+================================================================================
+
+================================================================================
+                            SOCIETY SETTLEMENT SHEET                            
+================================================================================
+  Society ID  : SOC002
+  Name        : Maddur Milk Society
+  Cycle       : 2024-10-C1
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Distance    : 10 km from chilling centre
+================================================================================
+  Total Member Gross Pouring Value : Rs         0.00
+  Total Litres Accepted            :             0.0
+  -------------------------------------------------------
+  Commission (2.5% of gross)       : Rs         0.00
+  Handling Fee (Rs 0.20/litre)     : Rs         0.00
+  Transport Subsidy                :    N/A (≤15 km)
+  =======================================================
+  NET PAYABLE TO SOCIETY           : Rs         0.00
+================================================================================
+[POURING] P1001 | M004 | AM | 10.0L | Fat=6.50% SNF=9.20% | Price=Rs51.90/L | Gross=Rs519.00 | ACCEPTED
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M004
+  Name        : Basavaraj Gowda
+  Cycle       : 2024-04-C1
+  Period      : 01-Apr-2024 to 10-Apr-2024
+  Payment Date: 13-Apr-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+  05-Apr-2024  AM        10.0   6.50   9.20     51.90     519.00 ACCEPTED    
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :       10.0
+  Gross Pouring Value                : Rs     519.00
+  Shifts Poured / Available          : 1 / 20
+  (+) Seasonal Lean-Month Bonus      : Rs      10.00
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs     529.00
+================================================================================
+
+[EXIT] Member M002 exited on 2024-10-10
+
+================================================================================
+                          MEMBER CYCLE PAYMENT ADVICE                           
+================================================================================
+  Member ID   : M002
+  Name        : Suresh Patil
+  Cycle       : 2024-10-C1-EXIT
+  Period      : 01-Oct-2024 to 10-Oct-2024
+  Payment Date: 10-Oct-2024
+================================================================================
+  Date         Shift   Litres   Fat%   SNF%   Price/L      Gross Status      
+--------------------------------------------------------------------------------
+  01-Oct-2024  AM         8.0   6.20   9.10     49.60     396.80 ACCEPTED    
+  01-Oct-2024  PM         7.5   6.00   9.00     48.00     360.00 ACCEPTED    
+--------------------------------------------------------------------------------
+
+  SUMMARY
+  Total Litres                       :       15.5
+  Gross Pouring Value                : Rs     756.80
+  Shifts Poured / Available          : 2 / 0
+  (-) Feed Advance Recovery (20%)    : Rs    2248.64
+  (-) Loan EMI Recovery              : Rs   11625.00
+  ----------------------------------------------------
+  NET PAYMENT                        : Rs  -13116.84
+================================================================================

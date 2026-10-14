@@ -1,0 +1,57 @@
+{"command": "register_union", "union_id": "U001", "name": "Mandya District Milk Union", "chilling_centre_id": "CC001"}
+{"command": "register_society", "society_id": "SOC001", "name": "Belakavadi Milk Society", "union_id": "U001", "commission_rate": "0.025", "distance_km": "22"}
+{"command": "register_society", "society_id": "SOC002", "name": "Maddur Milk Society", "union_id": "U001", "commission_rate": "0.025", "distance_km": "10"}
+{"command": "register_rate_chart", "chart_id": "COW-2024", "milk_type": "COW", "base_fat": "3.5", "base_snf": "8.5", "base_price": "32.00", "fat_increment": "0.60", "snf_increment": "0.30", "effective_from": "2024-01-01"}
+{"command": "register_rate_chart", "chart_id": "BUF-2024", "milk_type": "BUFFALO", "base_fat": "6.0", "base_snf": "9.0", "base_price": "48.00", "fat_increment": "0.70", "snf_increment": "0.20", "effective_from": "2024-01-01"}
+{"command": "register_member", "member_id": "M001", "name": "Ramesh Kumar", "society_id": "SOC001", "cattle_type": "COW"}
+{"command": "register_member", "member_id": "M002", "name": "Suresh Patil", "society_id": "SOC001", "cattle_type": "BUFFALO", "loan_schedules": [{"loan_id": "L001", "principal": "15000", "emi": "750", "balance": "12000"}], "feed_advances": [{"advance_id": "FA001", "amount_given": "3000", "balance": "2400"}]}
+{"command": "register_member", "member_id": "M003", "name": "Kavitha Devi", "society_id": "SOC001", "cattle_type": "COW"}
+{"command": "register_member", "member_id": "M004", "name": "Basavaraj Gowda", "society_id": "SOC002", "cattle_type": "BUFFALO"}
+{"command": "register_member", "member_id": "M005", "name": "Latha Naik", "society_id": "SOC002", "cattle_type": "COW"}
+# --- CYCLE 1: Oct 1-10 2024 (FLUSH MONTH) ---
+# Member M001 – good cow milk, 18 shifts (qualifies for loyalty bonus)
+{"command": "record_pouring", "pouring_id": "P0001", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-01T06:00:00", "shift": "AM", "litres": "12.0", "fat": "4.0", "snf": "8.6", "temperature_c": "8.5", "adulteration_flag": false, "can_id": "CAN001", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0002", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-01T17:00:00", "shift": "PM", "litres": "10.5", "fat": "4.1", "snf": "8.5", "temperature_c": "9.0", "adulteration_flag": false, "can_id": "CAN001", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0003", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-02T06:00:00", "shift": "AM", "litres": "11.5", "fat": "3.9", "snf": "8.4", "temperature_c": "9.5", "adulteration_flag": false, "can_id": "CAN001", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0004", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-02T17:00:00", "shift": "PM", "litres": "10.0", "fat": "4.2", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN001", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0005", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-03T06:00:00", "shift": "AM", "litres": "12.5", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN002", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0006", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-03T17:00:00", "shift": "PM", "litres": "11.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN002", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0007", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-04T06:00:00", "shift": "AM", "litres": "10.5", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN002", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0008", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-04T17:00:00", "shift": "PM", "litres": "11.5", "fat": "4.1", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN002", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0009", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-05T06:00:00", "shift": "AM", "litres": "12.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0010", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-05T17:00:00", "shift": "PM", "litres": "10.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+# M001 continues – days 6–9 (18 shifts total)
+{"command": "record_pouring", "pouring_id": "P0011", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-06T06:00:00", "shift": "AM", "litres": "12.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0012", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-06T17:00:00", "shift": "PM", "litres": "11.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0013", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-07T06:00:00", "shift": "AM", "litres": "10.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0014", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-07T17:00:00", "shift": "PM", "litres": "11.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0015", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-08T06:00:00", "shift": "AM", "litres": "12.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0016", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-08T17:00:00", "shift": "PM", "litres": "11.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0017", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-09T06:00:00", "shift": "AM", "litres": "12.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+{"command": "record_pouring", "pouring_id": "P0018", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-09T17:00:00", "shift": "PM", "litres": "11.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN003", "milk_type": "COW"}
+# M002 – buffalo member with debts
+{"command": "record_pouring", "pouring_id": "P0019", "member_id": "M002", "society_id": "SOC001", "pouring_datetime": "2024-10-01T06:00:00", "shift": "AM", "litres": "8.0", "fat": "6.2", "snf": "9.1", "temperature_c": "9.0", "adulteration_flag": false, "can_id": "CAN004", "milk_type": "BUFFALO"}
+{"command": "record_pouring", "pouring_id": "P0020", "member_id": "M002", "society_id": "SOC001", "pouring_datetime": "2024-10-01T17:00:00", "shift": "PM", "litres": "7.5", "fat": "6.0", "snf": "9.0", "temperature_c": "9.5", "adulteration_flag": false, "can_id": "CAN004", "milk_type": "BUFFALO"}
+# M003 – dispute test case
+{"command": "record_pouring", "pouring_id": "P0021", "member_id": "M003", "society_id": "SOC001", "pouring_datetime": "2024-10-01T06:00:00", "shift": "AM", "litres": "9.0", "fat": "3.8", "snf": "8.3", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN005", "milk_type": "COW"}
+# M003 files dispute within 24 h
+{"command": "file_dispute", "dispute_id": "D001", "pouring_id": "P0021", "member_id": "M003", "disputed_at": "2024-10-01T20:00:00", "parameter": "FAT", "original_value": "3.8"}
+# Retest: fat is actually 4.1 (higher → update)
+{"command": "resolve_dispute", "dispute_id": "D001", "retest_value": "4.1"}
+# Adulteration case – M003 rejected and suspended
+{"command": "record_pouring", "pouring_id": "P0022", "member_id": "M003", "society_id": "SOC001", "pouring_datetime": "2024-10-02T06:00:00", "shift": "AM", "litres": "9.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": true, "can_id": "CAN005", "milk_type": "COW"}
+# M003 tries to pour during suspension (should be rejected)
+{"command": "record_pouring", "pouring_id": "P0023", "member_id": "M003", "society_id": "SOC001", "pouring_datetime": "2024-10-05T06:00:00", "shift": "AM", "litres": "9.0", "fat": "4.0", "snf": "8.5", "temperature_c": "8.0", "adulteration_flag": false, "can_id": "CAN005", "milk_type": "COW"}
+# Rejection: fat too low
+{"command": "record_pouring", "pouring_id": "P0024", "member_id": "M001", "society_id": "SOC001", "pouring_datetime": "2024-10-10T06:00:00", "shift": "AM", "litres": "5.0", "fat": "2.8", "snf": "8.0", "temperature_c": "9.0", "adulteration_flag": false, "can_id": "CAN001", "milk_type": "COW"}
+# Sour can rejection (1 day)
+{"command": "record_sour_return", "return_id": "SR001", "can_id": "CAN002", "society_id": "SOC001", "return_date": "2024-10-03", "rejection_reason": "Acidity above threshold"}
+# Print daily register for Oct 1
+{"command": "print_daily_register", "society_id": "SOC001", "report_date": "2024-10-01"}
+# Close cycle 1
+{"command": "close_cycle", "society_id": "ALL", "cycle_start": "2024-10-01", "cycle_end": "2024-10-10"}
+# --- LEAN MONTH TEST: April 2024 ---
+{"command": "record_pouring", "pouring_id": "P1001", "member_id": "M004", "society_id": "SOC002", "pouring_datetime": "2024-04-05T06:00:00", "shift": "AM", "litres": "10.0", "fat": "6.5", "snf": "9.2", "temperature_c": "9.0", "adulteration_flag": false, "can_id": "CAN010", "milk_type": "BUFFALO"}
+{"command": "print_member_statement", "member_id": "M004", "cycle_start": "2024-04-01", "cycle_end": "2024-04-10"}
+# Member exit
+{"command": "exit_member", "member_id": "M002", "exit_date": "2024-10-10"}
