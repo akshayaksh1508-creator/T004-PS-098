@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # T004-PS-098 · Dairy Cooperative Milk Procurement Pricing and Member Payment Engine
 
 **Team T004** | Akshatha B (1AT24CD008) · Akshay H (1AT24CD009) | Section CSDS A
@@ -144,3 +145,6 @@ See `docs/decision_log.md` for full log. Key decisions:
 6. Society `sour_return_days` is a `set[date]` — deduplicates multiple cans on same day correctly
 7. Suspension check is lazy (checked at pour time, lifted automatically when date passes)
 8. `get_cycle_bounds()` uses `calendar.monthrange` to correctly handle February leap years
+=======
+# T004-PS-098
+>>>>>>> d54ddafa1f084c2859e6400be72aa8e9e31ace38
