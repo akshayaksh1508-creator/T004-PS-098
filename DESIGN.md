@@ -262,9 +262,3 @@ The brief also does not state the maximum chart range. The first implementation 
 8. Add integration tests using sample data.
 9. Run a final beginner-readability review and prepare the PDF design document.
 
-## 14. Week 2 design submission checklist
-
-This document is the plan for the project. At this stage, we do not need to finish all the Python code. The important part is that the design explains what we are going to build and how the rules will be applied.
-
-The planned input files, output files, calculation steps, business rules, edge cases, and testing approach are described above. We will decide the exact Python file names and CSV column names after the sample files are provided by the organisers.
-
