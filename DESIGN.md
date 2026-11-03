@@ -10,7 +10,7 @@ We are building a small command-line program for a dairy cooperative. The progra
 
 There is no website or mobile app in this project. We will use input files and generate output files. This matches the assignment requirement and keeps the project easy to understand.
 
-We will write the code in a simple way because both of us should be able to explain and change it during the viva:
+We will write the code in a simple way so that both of us can understand and change it:
 
 - small functions with clear names;
 - simple classes and dictionaries where they make the data easier to understand;
@@ -112,7 +112,7 @@ Every file will have a header row. We will keep IDs as text so that leading zero
 
 ## 6. Business rules from the assignment
 
-Rules are numbered so the team can refer to them in tests, design review, and viva answers.
+Rules are numbered so the team can refer to them easily in the tests and design.
 
 ### BR-01: Milk type
 
@@ -176,7 +176,7 @@ For each pouring, the program will do the following:
 8. Calculate and round the pouring value.
 9. Store the result with an acceptance flag and rule code.
 
-We will write interpolation as small steps instead of using one complicated formula. This will be easier to explain in the viva:
+We will write interpolation as small steps instead of using one complicated formula:
 
 ```text
 fat_price_low  = price at lower fat and requested SNF

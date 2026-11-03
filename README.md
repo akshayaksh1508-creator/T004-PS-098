@@ -11,7 +11,7 @@ The program will calculate milk prices and member payments for a dairy cooperati
 
 ## Development plan
 
-We are developing the project in eight parts. Each part will be committed separately so that the work can be followed in Git history.
+We will build the project in small stages so that each feature can be tested before the next one is added.
 
 1. Project setup and common helpers
 2. Basic records and input validation
@@ -22,13 +22,9 @@ We are developing the project in eight parts. Each part will be committed separa
 7. Sour-milk returns and society settlement
 8. Full command runner, complete reports, and final testing
 
-## Part 1 completed in this commit
+## Current progress
 
-- created a small `app` Python package;
-- added common money rounding using `Decimal`;
-- added cycle date helper functions;
-- added tests for these common helpers;
-- added a `.gitignore` for Python files and generated reports.
+The basic project setup is ready. It contains the common money and date helpers and tests for them.
 
 ## How to run the tests
 
