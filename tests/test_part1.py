@@ -12,8 +12,11 @@ class PartOneTests(unittest.TestCase):
         self.assertEqual(member.status, "ACTIVE")
 
     def test_society_can_be_created(self):
-        society = Society("S001", "U001", "Village Society", Decimal("2.5"), Decimal("20"))
-        self.assertEqual(society.commission_rate, Decimal("2.5"))
+        society = Society(
+            "S001", "U001", "Village Society", "Hirisave",
+            Decimal("20"), Decimal("2.50"),
+        )
+        self.assertEqual(society.commission_pct, Decimal("2.50"))
 
     def test_valid_shift(self):
         self.assertTrue(is_valid_shift("AM"))
