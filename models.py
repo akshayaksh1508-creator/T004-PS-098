@@ -55,3 +55,13 @@ class Pouring:
     temperature: Decimal
     adulteration: bool
     can_id: str
+
+@dataclass
+class PricedPouring:
+    pouring: Pouring
+    milk_type: str
+    accepted: bool
+    rejection_reason: str
+    price_per_litre: Decimal
+    value: Decimal
+    quality_adjustment: Decimal
