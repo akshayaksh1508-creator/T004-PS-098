@@ -1,3 +1,4 @@
+
 import unittest
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -131,11 +132,54 @@ class PouringTests(unittest.TestCase):
             pouring.pour_ts.date() + timedelta(days=7),
         )
 
+    def test_adulteration_takes_priority_over_low_fat(self):
+        member = self.make_member()
+        pouring = self.make_pouring(
+            fat_pct=Decimal("2.9"),
+            adulteration=True,
+        )
+
+        result = process_pouring(pouring, member)
+
+        self.assertEqual(result.status, "REJECTED")
+        self.assertEqual(
+            result.reject_reason, "ADULTERATION_POSITIVE"
+        )
+        self.assertEqual(
+            member.suspended_until,
+            pouring.pour_ts.date() + timedelta(days=7),
+        )
+
+    def test_member_is_rejected_on_seventh_suspension_day(self):
+        member = self.make_member()
+        member.suspended_until = datetime(2026, 11, 8).date()
+
+        result = process_pouring(
+            self.make_pouring(
+                pour_ts=datetime(2026, 11, 8, 6, 0, 0)
+            ),
+            member,
+        )
+
+        self.assertEqual(result.status, "REJECTED")
+        self.assertEqual(result.reject_reason, "MEMBER_SUSPENDED")
+
+    def test_member_can_pour_after_suspension_expires(self):
+        member = self.make_member()
+        member.suspended_until = datetime(2026, 11, 8).date()
+
+        result = process_pouring(
+            self.make_pouring(
+                pour_ts=datetime(2026, 11, 9, 6, 0, 0)
+            ),
+            member,
+        )
+
+        self.assertEqual(result.status, "ACCEPTED")
+
     def test_suspended_member_is_rejected(self):
         member = self.make_member()
-        member.suspended_until = datetime(
-            2026, 11, 7
-        ).date()
+        member.suspended_until = datetime(2026, 11, 7).date()
 
         result = process_pouring(
             self.make_pouring(

@@ -1,3 +1,4 @@
+
 from datetime import timedelta
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -60,15 +61,15 @@ def process_pouring(pouring, member):
     temperature = Decimal(str(pouring.temp_c))
     litres = Decimal(str(pouring.litres))
 
-    if fat < Decimal("3.0"):
-        return rejected_pouring(pouring, "FAT_TOO_LOW")
-
-    chart_id = determine_milk_type(fat, member.cattle_type)
-
+    # Adulteration must trigger suspension even if fat is also low.
     if pouring.adulteration:
         member.suspended_until = pour_date + timedelta(days=7)
         return rejected_pouring(pouring, "ADULTERATION_POSITIVE")
 
+    if fat < Decimal("3.0"):
+        return rejected_pouring(pouring, "FAT_TOO_LOW")
+
+    chart_id = determine_milk_type(fat, member.cattle_type)
     chart = get_rate_chart(chart_id)
     chart_rate = calculate_base_price(chart, fat, snf)
 
