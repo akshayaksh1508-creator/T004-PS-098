@@ -1,3 +1,4 @@
+
 import csv
 import os
 import tempfile
@@ -7,7 +8,12 @@ from decimal import Decimal
 
 from models import Member, Pouring
 from pouring_service import process_pourings
-from reports import REGISTER_COLUMNS, write_collection_register
+from reports import (
+    REGISTER_COLUMNS,
+    DISPUTE_RESULT_COLUMNS,
+    write_collection_register,
+    write_dispute_results,
+)
 
 
 class ReportTests(unittest.TestCase):
@@ -73,6 +79,72 @@ class ReportTests(unittest.TestCase):
             self.assertEqual(rows[2]["reject_reason"], "FAT_TOO_LOW")
             self.assertEqual(rows[2]["chart_id"], "")
             self.assertEqual(rows[2]["chart_rate"], "0.00")
+
+    # New dispute report tests
+
+    def test_dispute_report_has_exact_columns(self):
+        results = [
+            {
+                "test_id": "RT-001",
+                "pouring_id": "P001",
+                "status": "ACCEPTED",
+                "parameter": "FAT",
+                "original_value": "3.90",
+                "retest_value": "4.05",
+                "value_used": "4.05",
+            }
+        ]
+
+        with tempfile.TemporaryDirectory() as folder:
+            file_name = os.path.join(folder, "disputes.csv")
+
+            write_dispute_results(results, file_name)
+
+            with open(file_name, "r", encoding="utf-8") as file:
+                reader = csv.DictReader(file)
+                rows = list(reader)
+
+            self.assertEqual(
+                reader.fieldnames,
+                DISPUTE_RESULT_COLUMNS,
+            )
+            self.assertEqual(len(rows), 1)
+
+    def test_dispute_report_writes_multiple_results(self):
+        results = [
+            {
+                "test_id": "RT-001",
+                "pouring_id": "P001",
+                "status": "ACCEPTED",
+                "parameter": "FAT",
+                "original_value": "3.90",
+                "retest_value": "4.05",
+                "value_used": "4.05",
+            },
+            {
+                "test_id": "RT-002",
+                "pouring_id": "P002",
+                "status": "REJECTED",
+                "parameter": "SNF",
+                "original_value": "8.50",
+                "retest_value": "8.40",
+                "value_used": "8.50",
+            },
+        ]
+
+        with tempfile.TemporaryDirectory() as folder:
+            file_name = os.path.join(folder, "disputes.csv")
+
+            write_dispute_results(results, file_name)
+
+            with open(file_name, "r", encoding="utf-8") as file:
+                rows = list(csv.DictReader(file))
+
+            self.assertEqual(len(rows), 2)
+            self.assertEqual(rows[0]["test_id"], "RT-001")
+            self.assertEqual(rows[0]["value_used"], "4.05")
+            self.assertEqual(rows[1]["test_id"], "RT-002")
+            self.assertEqual(rows[1]["status"], "REJECTED")
 
 
 if __name__ == "__main__":

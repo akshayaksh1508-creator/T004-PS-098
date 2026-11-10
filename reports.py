@@ -1,3 +1,4 @@
+
 import csv
 
 
@@ -18,6 +19,17 @@ REGISTER_COLUMNS = [
     "status",
     "reject_reason",
     "sour_reversal",
+]
+
+
+DISPUTE_RESULT_COLUMNS = [
+    "test_id",
+    "pouring_id",
+    "status",
+    "parameter",
+    "original_value",
+    "retest_value",
+    "value_used",
 ]
 
 
@@ -54,4 +66,24 @@ def write_collection_register(
                 "status": result.status,
                 "reject_reason": result.reject_reason,
                 "sour_reversal": result.sour_reversal,
+            })
+
+
+def write_dispute_results(
+    results, file_name="dispute_results.csv"
+):
+    """Write re-test outcomes using the college-required CSV columns."""
+
+    with open(file_name, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=DISPUTE_RESULT_COLUMNS,
+            extrasaction="raise",
+        )
+        writer.writeheader()
+
+        for result in results:
+            writer.writerow({
+                column: result[column]
+                for column in DISPUTE_RESULT_COLUMNS
             })
