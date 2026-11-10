@@ -32,6 +32,7 @@ class Member:
     feed_advance_balance: Decimal = Decimal("0.00")
     loan_balance: Decimal = Decimal("0.00")
     loan_emi: Decimal = Decimal("0.00")
+    loan_carried: Decimal = Decimal("0.00")
     status: str = "ACTIVE"
     suspended_until: date | None = None
 
