@@ -75,3 +75,13 @@ class PricedPouring:
     status: str
     reject_reason: str
     sour_reversal: Decimal = Decimal("0.00")
+
+
+@dataclass
+class Dispute:
+    dispute_id: str
+    pouring_id: str
+    raised_at: datetime
+    new_fat: Decimal | None = None
+    new_snf: Decimal | None = None
+    status: str = "PENDING"
