@@ -33,6 +33,43 @@ DISPUTE_RESULT_COLUMNS = [
 ]
 
 
+MEMBER_STATEMENT_COLUMNS = [
+    "cycle_start",
+    "cycle_end",
+    "member_id",
+    "shifts_poured",
+    "accepted_litres",
+    "pouring_value",
+    "sour_reversal",
+    "loyalty_bonus",
+    "lean_bonus",
+    "flush_penalty",
+    "gross",
+    "feed_recovery",
+    "loan_recovery",
+    "loan_carried",
+    "net_payment",
+    "payment_date",
+    "feed_balance_after",
+    "loan_balance_after",
+]
+
+
+SOCIETY_SETTLEMENT_COLUMNS = [
+    "cycle_start",
+    "cycle_end",
+    "society_id",
+    "accepted_litres",
+    "pouring_value",
+    "commission",
+    "handling",
+    "commission_forfeited",
+    "transport_subsidy",
+    "sour_milk_share",
+    "net_settlement",
+]
+
+
 def write_collection_register(
     results, file_name="collection_register.csv"
 ):
@@ -86,4 +123,64 @@ def write_dispute_results(
             writer.writerow({
                 column: result[column]
                 for column in DISPUTE_RESULT_COLUMNS
+            })
+
+
+def write_member_statements(
+    summaries, file_name="member_statements.csv"
+):
+    """Write one row per member per cycle from cycle summaries."""
+
+    sorted_summaries = sorted(
+        summaries,
+        key=lambda summary: (
+            summary["member_id"],
+            summary["cycle_start"],
+        ),
+    )
+
+    with open(file_name, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=MEMBER_STATEMENT_COLUMNS,
+            extrasaction="raise",
+        )
+        writer.writeheader()
+
+        for summary in sorted_summaries:
+            writer.writerow({
+                column: summary[column]
+                for column in MEMBER_STATEMENT_COLUMNS
+            })
+
+
+def write_society_settlements(
+    settlements, file_name="society_settlements.csv"
+):
+    """Write one row per society per cycle."""
+
+    sorted_settlements = sorted(
+        settlements,
+        key=lambda settlement: (
+            settlement["society_id"],
+            settlement["cycle_start"],
+        ),
+    )
+
+    with open(file_name, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(
+            file,
+            fieldnames=SOCIETY_SETTLEMENT_COLUMNS,
+            extrasaction="raise",
+        )
+        writer.writeheader()
+
+        for settlement in sorted_settlements:
+            writer.writerow({
+                column: (
+                    "true" if settlement[column] is True
+                    else "false" if settlement[column] is False
+                    else settlement[column]
+                )
+                for column in SOCIETY_SETTLEMENT_COLUMNS
             })

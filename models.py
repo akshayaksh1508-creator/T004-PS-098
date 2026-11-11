@@ -85,3 +85,11 @@ class Dispute:
     new_fat: Decimal | None = None
     new_snf: Decimal | None = None
     status: str = "PENDING"
+
+
+@dataclass
+class CanRejection:
+    rejection_id: str
+    can_id: str
+    rejected_ts: datetime
+    reason: str
