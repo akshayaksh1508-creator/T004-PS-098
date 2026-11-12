@@ -175,7 +175,6 @@ class SocietySettlementTests(unittest.TestCase):
         rejections = [
             make_rejection("CR-01", "C1", 12),
             make_rejection("CR-02", "C2", 15),
-            # 23:59 on the third distinct day still counts.
             make_rejection(
                 "CR-03", "C3", 20, hour=23, minute=59
             ),
@@ -197,7 +196,6 @@ class SocietySettlementTests(unittest.TestCase):
         self.assertEqual(
             settlement["handling"], Decimal("0.00")
         )
-        # Transport subsidy stays even when commission is forfeited.
         self.assertEqual(
             settlement["transport_subsidy"], Decimal("4.50")
         )
@@ -209,7 +207,6 @@ class SocietySettlementTests(unittest.TestCase):
             make_result(day=15, can_id="C3"),
         ]
 
-        # Two cans rejected on the same day count as one day.
         rejections = [
             make_rejection("CR-01", "C1", 12),
             make_rejection("CR-02", "C2", 12),

@@ -3,14 +3,6 @@ from validators import is_valid_cattle_type
 from models import RateChart
 
 def determine_milk_type(fat, declared_type):
-    """
-    Determines which rate chart should be used.
-
-    Fat below 3.0 is rejected.
-    Mixed milk always uses the Cow rate chart.
-    Fat up to and including 5.0 uses the Cow chart.
-    Fat above 5.0 uses the Buffalo chart.
-    """
 
     fat = Decimal(str(fat))
     declared_type = declared_type.upper()
@@ -31,10 +23,6 @@ def determine_milk_type(fat, declared_type):
 
 
 def get_rate_chart(milk_type):
-    """
-    Returns the rate chart for the selected milk type.
-    Mixed milk uses the Cow rate chart.
-    """
 
     milk_type = milk_type.upper()
 
@@ -64,14 +52,38 @@ def get_rate_chart(milk_type):
     else:
         raise ValueError("INVALID_MILK_TYPE")
 
+
+def load_rate_charts(rows):
+    grids = {}
+    for row in rows:
+        chart_id = row["chart_id"].strip().upper()
+        fat = Decimal(str(row["fat_pct"]).strip()).quantize(Decimal("0.1"))
+        snf = Decimal(str(row["snf_pct"]).strip()).quantize(Decimal("0.1"))
+        rate = Decimal(str(row["rate_per_litre"]).strip())
+        grids.setdefault(chart_id, {})[(fat, snf)] = rate
+
+    charts = {}
+    for chart_id in ("COW", "BUFFALO"):
+        base_chart = get_rate_chart(chart_id)
+        if chart_id in grids:
+            base_chart.grid = grids[chart_id]
+        charts[chart_id] = base_chart
+    return charts
+
+
 def interpolate(x, x1, y1, x2, y2):
-    """Find a value between two known points."""
+    if x2 == x1:
+        return y1
     return y1 + ((x - x1) / (x2 - x1)) * (y2 - y1)
 
 
 def get_grid_price(chart, fat, snf):
-    """Calculate the price at an exact 0.1 Fat/SNF chart point."""
     step = Decimal("0.1")
+    fat_key = fat.quantize(step)
+    snf_key = snf.quantize(step)
+
+    if chart.grid is not None and (fat_key, snf_key) in chart.grid:
+        return chart.grid[(fat_key, snf_key)]
 
     fat_steps = (fat - chart.base_fat) / step
     snf_steps = (snf - chart.base_snf) / step
@@ -84,7 +96,6 @@ def get_grid_price(chart, fat, snf):
 
 
 def calculate_base_price(chart, fat, snf):
-    """Calculate milk price using two-axis linear interpolation."""
     fat = Decimal(str(fat))
     snf = Decimal(str(snf))
     step = Decimal("0.1")
@@ -93,15 +104,14 @@ def calculate_base_price(chart, fat, snf):
         (fat - chart.base_fat) / step
     ).to_integral_value(rounding=ROUND_FLOOR) * step
 
-    upper_fat = lower_fat + step
+    upper_fat = lower_fat if fat == lower_fat else lower_fat + step
 
     lower_snf = chart.base_snf + (
         (snf - chart.base_snf) / step
     ).to_integral_value(rounding=ROUND_FLOOR) * step
 
-    upper_snf = lower_snf + step
+    upper_snf = lower_snf if snf == lower_snf else lower_snf + step
 
-    # Interpolate along SNF at the lower Fat value
     price1 = interpolate(
         snf, lower_snf,
         get_grid_price(chart, lower_fat, lower_snf),
@@ -109,18 +119,19 @@ def calculate_base_price(chart, fat, snf):
         get_grid_price(chart, lower_fat, upper_snf)
     )
 
-    # Interpolate along SNF at the upper Fat value
-    price2 = interpolate(
-        snf, lower_snf,
-        get_grid_price(chart, upper_fat, lower_snf),
-        upper_snf,
-        get_grid_price(chart, upper_fat, upper_snf)
-    )
+    if upper_fat == lower_fat:
+        final_price = price1
+    else:
+        price2 = interpolate(
+            snf, lower_snf,
+            get_grid_price(chart, upper_fat, lower_snf),
+            upper_snf,
+            get_grid_price(chart, upper_fat, upper_snf)
+        )
 
-    # Interpolate between the two Fat values
-    final_price = interpolate(
-        fat, lower_fat, price1, upper_fat, price2
-    )
+        final_price = interpolate(
+            fat, lower_fat, price1, upper_fat, price2
+        )
 
     return final_price.quantize(
         Decimal("0.01"), rounding=ROUND_HALF_UP

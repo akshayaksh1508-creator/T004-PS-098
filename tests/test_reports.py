@@ -1,4 +1,3 @@
-
 import csv
 import os
 import tempfile
@@ -84,7 +83,6 @@ class ReportTests(unittest.TestCase):
             self.assertEqual(rows[2]["chart_id"], "")
             self.assertEqual(rows[2]["chart_rate"], "0.00")
 
-    # New dispute report tests
 
     def test_dispute_report_has_exact_columns(self):
         results = [

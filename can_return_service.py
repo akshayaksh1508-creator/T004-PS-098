@@ -9,11 +9,6 @@ ZERO = Decimal("0.00")
 
 
 def apply_can_rejection(rejection, results, members):
-    """
-    Reverse every accepted pouring in the rejected can at 50% of
-    value. The member bears this half (sour_reversal); the society
-    bears the other half in its settlement.
-    """
 
     if not rejection.rejection_id:
         raise ValueError("INVALID_REJECTION_ID")

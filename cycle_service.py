@@ -82,14 +82,14 @@ def count_shifts(member_id, results, cycle_start, cycle_end):
 def calculate_accepted_litres(
     member_id, results, cycle_start, cycle_end
 ):
-    total_litres = ZERO
+    total_litres = Decimal("0.0")
 
     for result in accepted_cycle_results(
         member_id, results, cycle_start, cycle_end
     ):
         total_litres += Decimal(str(result.pouring.litres))
 
-    return total_litres
+    return total_litres.quantize(LITRE_STEP, rounding=ROUND_HALF_UP)
 
 
 def calculate_cycle_value(

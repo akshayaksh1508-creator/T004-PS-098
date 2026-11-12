@@ -1,6 +1,6 @@
-from decimal import Decimal
+from decimal import Decimal, ROUND_HALF_UP
 
-from cycle_service import money
+from cycle_service import LITRE_STEP, money
 
 
 HANDLING_RATE = Decimal("0.20")
@@ -18,13 +18,6 @@ def calculate_society_settlement(
     cycle_start,
     cycle_end,
 ):
-    """
-    Settle one society for one cycle: commission on members'
-    pouring value, per-litre handling, transport subsidy when
-    the society is more than 15 km away, the society's half of
-    sour-milk reversals, and commission forfeit after can
-    rejections on three or more distinct days.
-    """
 
     society_id = society.society_id
 
@@ -34,7 +27,7 @@ def calculate_society_settlement(
         if member.society_id == society_id
     }
 
-    accepted_litres = ZERO
+    accepted_litres = Decimal("0.0")
     pouring_value = ZERO
     sour_milk_share = ZERO
 
@@ -112,7 +105,9 @@ def calculate_society_settlement(
         "cycle_start": cycle_start,
         "cycle_end": cycle_end,
         "society_id": society_id,
-        "accepted_litres": accepted_litres,
+        "accepted_litres": accepted_litres.quantize(
+            LITRE_STEP, rounding=ROUND_HALF_UP
+        ),
         "pouring_value": money(pouring_value),
         "commission": commission,
         "handling": handling,

@@ -1,4 +1,3 @@
-
 import unittest
 from datetime import datetime, timedelta
 from decimal import Decimal
@@ -45,7 +44,6 @@ class DisputeTests(unittest.TestCase):
             cattle_type="COW",
         )
 
-    # Dispute registration tests
 
     def test_dispute_within_24_hours_is_registered(self):
         priced = self.make_priced_pouring()
@@ -125,7 +123,6 @@ class DisputeTests(unittest.TestCase):
         self.assertEqual(dispute.new_fat, Decimal("3.8"))
         self.assertEqual(dispute.new_snf, Decimal("8.7"))
 
-    # Re-test processing tests
 
     def test_higher_fat_retest_updates_price(self):
         priced = self.make_priced_pouring()

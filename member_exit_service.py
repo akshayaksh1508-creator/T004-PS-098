@@ -1,4 +1,3 @@
-
 from datetime import date
 from decimal import Decimal
 
@@ -15,11 +14,6 @@ ZERO = Decimal("0.00")
 def calculate_exit_recoveries(
     gross, feed_balance, loan_balance
 ):
-    """
-    Recover all outstanding feed and loan balances
-    when a member exits. The normal Rs 500 floor
-    does not apply.
-    """
 
     gross = money(gross)
     feed_recovery = money(feed_balance)
@@ -42,10 +36,6 @@ def calculate_exit_recoveries(
 def calculate_member_exit_summary(
     member, results, exit_date
 ):
-    """
-    Calculate the member's partial-cycle final payment
-    and close their membership on the exit date.
-    """
 
     if not isinstance(exit_date, date):
         raise ValueError("INVALID_EXIT_DATE")

@@ -1,4 +1,3 @@
-
 from datetime import timedelta
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -42,7 +41,7 @@ def rejected_pouring(pouring, reason):
     )
 
 
-def process_pouring(pouring, member):
+def process_pouring(pouring, member, rate_charts=None):
     validate_pouring(pouring)
 
     pour_date = pouring.pour_ts.date()
@@ -61,7 +60,6 @@ def process_pouring(pouring, member):
     temperature = Decimal(str(pouring.temp_c))
     litres = Decimal(str(pouring.litres))
 
-    # Adulteration must trigger suspension even if fat is also low.
     if pouring.adulteration:
         member.suspended_until = pour_date + timedelta(days=7)
         return rejected_pouring(pouring, "ADULTERATION_POSITIVE")
@@ -70,7 +68,10 @@ def process_pouring(pouring, member):
         return rejected_pouring(pouring, "FAT_TOO_LOW")
 
     chart_id = determine_milk_type(fat, member.cattle_type)
-    chart = get_rate_chart(chart_id)
+    if rate_charts is not None and chart_id in rate_charts:
+        chart = rate_charts[chart_id]
+    else:
+        chart = get_rate_chart(chart_id)
     chart_rate = calculate_base_price(chart, fat, snf)
 
     if chart_id == "BUFFALO":
@@ -108,7 +109,7 @@ def process_pouring(pouring, member):
     )
 
 
-def process_pourings(pourings, members):
+def process_pourings(pourings, members, rate_charts=None):
     results = []
     seen_ids = set()
 
@@ -130,7 +131,7 @@ def process_pourings(pourings, members):
             continue
 
         try:
-            results.append(process_pouring(pouring, member))
+            results.append(process_pouring(pouring, member, rate_charts))
         except ValueError as error:
             results.append(
                 rejected_pouring(pouring, str(error))
