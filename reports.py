@@ -1,4 +1,3 @@
-
 import csv
 
 
@@ -109,7 +108,6 @@ def write_collection_register(
 def write_dispute_results(
     results, file_name="dispute_results.csv"
 ):
-    """Write re-test outcomes using the college-required CSV columns."""
 
     with open(file_name, "w", newline="", encoding="utf-8") as file:
         writer = csv.DictWriter(
@@ -129,7 +127,6 @@ def write_dispute_results(
 def write_member_statements(
     summaries, file_name="member_statements.csv"
 ):
-    """Write one row per member per cycle from cycle summaries."""
 
     sorted_summaries = sorted(
         summaries,
@@ -157,7 +154,6 @@ def write_member_statements(
 def write_society_settlements(
     settlements, file_name="society_settlements.csv"
 ):
-    """Write one row per society per cycle."""
 
     sorted_settlements = sorted(
         settlements,

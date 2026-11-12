@@ -1,4 +1,3 @@
-
 import unittest
 from datetime import date, datetime
 from decimal import Decimal
@@ -235,11 +234,9 @@ class CycleTests(unittest.TestCase):
             summary["payment_date"], date(2026, 1, 23)
         )
 
-    # EC-04: Exactly 15 out of 20 shifts earns ₹54.25.
     def test_ec04_exactly_15_shifts_earns_54_25(self):
         results = []
 
-        # 10 AM shifts from January 11 to January 20.
         for day in range(11, 21):
             results.append(
                 make_result(
@@ -249,8 +246,6 @@ class CycleTests(unittest.TestCase):
                 )
             )
 
-        # 5 PM shifts from January 11 to January 15.
-        # Four shifts have 7 litres and one has 10.5 litres.
         for day in range(11, 15):
             results.append(
                 make_result(
@@ -283,13 +278,9 @@ class CycleTests(unittest.TestCase):
             summary["loyalty_bonus"], Decimal("54.25")
         )
 
-    # EC-05: February 21–28 has 16 possible shifts.
-    # M-003 has 15 shifts and qualifies.
-    # M-011 has 14 shifts and does not qualify.
     def test_ec05_february_15_shifts_qualifies_14_does_not(self):
         results = []
 
-        # M-003: 8 AM shifts + 7 PM shifts = 15.
         for day in range(21, 29):
             results.append(
                 make_result(
@@ -312,7 +303,6 @@ class CycleTests(unittest.TestCase):
                 )
             )
 
-        # M-011: 7 AM shifts + 7 PM shifts = 14.
         for day in range(21, 28):
             results.append(
                 make_result(
@@ -385,7 +375,6 @@ class SeasonalBonusTests(unittest.TestCase):
             )
 
     def test_flush_threshold_uses_11_day_previous_cycle(self):
-        # Previous cycle 2025-12-21..31 has 11 days.
         self.assertEqual(
             calculate_flush_threshold(
                 date(2026, 1, 1), Decimal("212.0")
@@ -394,7 +383,6 @@ class SeasonalBonusTests(unittest.TestCase):
         )
 
     def test_flush_threshold_uses_10_day_previous_cycle(self):
-        # Previous cycle 2026-01-01..10 has 10 days.
         self.assertEqual(
             calculate_flush_threshold(
                 date(2026, 1, 11), Decimal("212.0")
@@ -437,8 +425,6 @@ class SeasonalBonusTests(unittest.TestCase):
             date(2026, 1, 1), date(2026, 1, 10)
         )
 
-        # Threshold = round(1.5 x 36.2 / 11, 0.1) = 4.9.
-        # Excess = 7.5 - 4.9 = 2.6 -> penalty = 0.65.
         self.assertEqual(
             summary["flush_penalty"], Decimal("0.65")
         )
@@ -476,8 +462,6 @@ class SeasonalBonusTests(unittest.TestCase):
 
 class RecoveryTests(unittest.TestCase):
 
-    # EC-06: feed cleared in full, gross after feed exactly
-    # 2 x EMI, so the EMI is recovered in full.
     def test_ec06_feed_cleared_and_exact_two_times_emi(self):
         recovery = calculate_recoveries(
             gross=Decimal("7636.88"),
@@ -523,8 +507,6 @@ class RecoveryTests(unittest.TestCase):
             recovery["net_payment"], Decimal("1400.00")
         )
 
-    # M-009 trap: 50% EMI would leave less than Rs 500,
-    # so the loan recovery is cut to keep the net at Rs 500.
     def test_m009_floor_cuts_loan_recovery_to_keep_net_500(self):
         recovery = calculate_recoveries(
             gross=Decimal("1264.16"),
@@ -608,8 +590,6 @@ class RecoveryTests(unittest.TestCase):
             loan_emi=Decimal("1000.00"),
         )
 
-        # Feed 20% = 200; after feed 800 < 2 x 1000 -> loan 500
-        # -> net 300 < 500 -> loan cut by 200 to keep net 500.
         self.assertEqual(
             recovery["feed_recovery"], Decimal("200.00")
         )
@@ -632,7 +612,6 @@ class RecoveryTests(unittest.TestCase):
             loan_carried=Decimal("300.00"),
         )
 
-        # Due = 1000 + 300 = 1300; 2000 < 2 x 1300 -> half = 650.
         self.assertEqual(
             recovery["loan_recovery"], Decimal("650.00")
         )
@@ -726,7 +705,6 @@ class RecoveryTests(unittest.TestCase):
             date(2026, 1, 1), date(2026, 1, 10)
         )
 
-        # Threshold 4.9; only the 7.5 L day is over: penalty 0.65.
         self.assertEqual(
             summary["flush_penalty"], Decimal("0.65")
         )

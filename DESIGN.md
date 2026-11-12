@@ -93,22 +93,20 @@ For money, we will use Python's `Decimal` so that the result is correct to the p
 - `unions.csv`
 - `societies.csv`
 - `members.csv`
-- `rate_charts.csv`
+- `rate_chart.csv`
 - `pourings.csv`
-- `disputes.csv`
-- `can_returns.csv`
-- `commands.csv`
+- `retests.csv`
+- `can_rejections.csv`
+- `commands.txt`
 
-Every file will have a header row. We will keep IDs as text so that leading zeroes are not lost. Dates will use `YYYY-MM-DD` and timestamps will use `YYYY-MM-DD HH:MM`.
+Every CSV file has a header row. We keep IDs as text so that leading zeroes are not lost. Dates use `YYYY-MM-DD` and timestamps use `YYYY-MM-DD HH:MM:SS`.
 
 ### Output files
 
-- `pouring_prices.csv` - one row per pouring, including accepted/rejected reason.
-- `daily_collection_register.csv` - daily totals by society and milk type.
-- `member_cycle_statements.csv` - gross, bonuses, deductions, recoveries, and net payment.
-- `payment_advice.txt` - readable member-wise payment advice.
-- `society_settlements.csv` - gross value, commission, handling, subsidy, returns, and final settlement.
-- `errors.csv` - rejected input rows with a stable error code and message.
+- `collection_register.csv` - one row per pouring, including accepted/rejected reason, price per litre, value, and sour-milk reversal.
+- `dispute_results.csv` - one row per re-test, with original, re-test, and final value used.
+- `member_statements.csv` - gross, bonuses, deductions, recoveries, and net payment per member per cycle.
+- `society_settlements.csv` - accepted litres, pouring value, commission, handling, transport subsidy, sour-milk share, and net settlement per society per cycle.
 
 ## 6. Business rules from the assignment
 

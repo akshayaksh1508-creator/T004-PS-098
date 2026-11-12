@@ -1,6 +1,4 @@
-
-"""Command-line integration for the PS-098 dairy procurement engine."""
-
+import sys
 from datetime import date, datetime
 from decimal import Decimal
 from pathlib import Path
@@ -12,6 +10,7 @@ from file_reader import read_csv_file
 from member_exit_service import calculate_member_exit_summary
 from models import CanRejection, Member, Pouring, Society, Union
 from pouring_service import process_pourings
+from pricing import load_rate_charts
 from reports import (
     write_collection_register,
     write_dispute_results,
@@ -141,7 +140,6 @@ def _write_reports(
 
 
 def run_commands(data_dir=DATA_DIR, commands_file=None):
-    """Execute commands.txt in strict order and return final state."""
 
     data_dir = Path(data_dir)
 
@@ -151,6 +149,12 @@ def run_commands(data_dir=DATA_DIR, commands_file=None):
         commands_file = Path(commands_file)
 
     unions, societies, members = _load_masters(data_dir)
+    rate_chart_path = data_dir / "rate_chart.csv"
+    rate_charts = (
+        load_rate_charts(read_csv_file(rate_chart_path))
+        if rate_chart_path.exists()
+        else None
+    )
     all_pourings = _load_pourings(data_dir)
     retests = _load_retests(data_dir)
     rejection_master = _load_can_rejections(data_dir)
@@ -189,7 +193,9 @@ def run_commands(data_dir=DATA_DIR, commands_file=None):
                         (shift_date, shift), []
                     )
 
-                    batch_results = process_pourings(batch, members)
+                    batch_results = process_pourings(
+                        batch, members, rate_charts
+                    )
 
                     for result in batch_results:
                         results.append(result)
@@ -211,6 +217,7 @@ def run_commands(data_dir=DATA_DIR, commands_file=None):
                             retest,
                             priced_pouring,
                             member,
+                            rate_charts,
                         )
                     )
 
@@ -312,14 +319,26 @@ def run_commands(data_dir=DATA_DIR, commands_file=None):
     }
 
 
+def _resolve_data_dir():
+    if len(sys.argv) > 1:
+        return Path(sys.argv[1])
+    if DATA_DIR.exists():
+        return DATA_DIR
+    extracted_dir = Path("_sample_data/extracted/T004-PS-098-sample-data")
+    if extracted_dir.exists():
+        return extracted_dir
+    return DATA_DIR
+
+
 def main():
-    if not DATA_DIR.exists():
+    data_dir = _resolve_data_dir()
+    if not data_dir.exists():
         raise FileNotFoundError(
-            f"Sample data folder not found: {DATA_DIR}. "
-            "Run this program from the project root."
+            f"Sample data folder not found: {data_dir}. "
+            "Pass the data directory as an argument or run from the project root."
         )
 
-    state = run_commands(DATA_DIR)
+    state = run_commands(data_dir)
 
     print("PS-098 processing completed successfully.")
     print(f"Pourings processed: {len(state['results'])}")

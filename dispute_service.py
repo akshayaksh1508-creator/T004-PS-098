@@ -1,4 +1,3 @@
-
 from datetime import datetime, timedelta
 from decimal import Decimal
 
@@ -34,7 +33,6 @@ def register_dispute(
     new_fat=None,
     new_snf=None,
 ):
-    """Register a dispute within 24 hours of the original pouring."""
     if not dispute_id:
         raise ValueError("INVALID_DISPUTE_ID")
 
@@ -83,15 +81,17 @@ def _parse_timestamp(value):
     raise ValueError("INVALID_DISPUTE_TIMESTAMP")
 
 
-def _recalculate_priced_pouring(priced_pouring, member):
-    """Recalculate the pouring price after a higher re-test reading."""
+def _recalculate_priced_pouring(priced_pouring, member, rate_charts=None):
     pouring = priced_pouring.pouring
 
     fat = priced_pouring.fat_used
     snf = priced_pouring.snf_used
 
     chart_id = determine_milk_type(fat, member.cattle_type)
-    chart = get_rate_chart(chart_id)
+    if rate_charts is not None and chart_id in rate_charts:
+        chart = rate_charts[chart_id]
+    else:
+        chart = get_rate_chart(chart_id)
 
     chart_rate = calculate_base_price(chart, fat, snf)
 
@@ -129,13 +129,7 @@ def _recalculate_priced_pouring(priced_pouring, member):
     priced_pouring.value = value
 
 
-def process_retest(retest_row, priced_pouring, member):
-    """
-    Process one re-test row from the college sample pack.
-
-    Each row contains one parameter: FAT or SNF.
-    The higher of the original and re-test readings is retained.
-    """
+def process_retest(retest_row, priced_pouring, member, rate_charts=None):
 
     test_id = str(retest_row.get("test_id", "")).strip()
     pouring_id = str(retest_row.get("pouring_id", "")).strip()
@@ -192,6 +186,7 @@ def process_retest(retest_row, priced_pouring, member):
             _recalculate_priced_pouring(
                 priced_pouring,
                 member,
+                rate_charts,
             )
 
     return {

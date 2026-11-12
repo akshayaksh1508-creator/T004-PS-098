@@ -45,6 +45,7 @@ class RateChart:
     base_price: Decimal
     fat_step_price: Decimal
     snf_step_price: Decimal
+    grid: dict[tuple[Decimal, Decimal], Decimal] | None = None
 
 
 @dataclass
