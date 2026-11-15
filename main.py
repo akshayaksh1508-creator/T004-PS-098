@@ -12,6 +12,10 @@ from models import CanRejection, Member, Pouring, Society, Union
 from pouring_service import process_pourings
 from pricing import load_rate_charts
 from reports import (
+    print_collection_register_terminal,
+    print_dispute_results_terminal,
+    print_member_statements_terminal,
+    print_society_settlements_terminal,
     write_collection_register,
     write_dispute_results,
     write_member_statements,
@@ -282,12 +286,21 @@ def run_commands(data_dir=DATA_DIR, commands_file=None):
 
                 elif command == "PRINT_COLLECTION_REGISTER":
                     write_collection_register(results)
+                    cycle_start = _parse_date(args[0]) if len(args) > 0 and args[0] else None
+                    cycle_end = _parse_date(args[1]) if len(args) > 1 and args[1] else None
+                    print_collection_register_terminal(results, cycle_start, cycle_end)
 
                 elif command == "PRINT_MEMBER_STATEMENTS":
                     write_member_statements(member_summaries)
+                    cycle_start = _parse_date(args[0]) if len(args) > 0 and args[0] else None
+                    cycle_end = _parse_date(args[1]) if len(args) > 1 and args[1] else None
+                    print_member_statements_terminal(member_summaries, cycle_start, cycle_end)
 
                 elif command == "PRINT_SOCIETY_SETTLEMENT":
                     write_society_settlements(society_settlements)
+                    cycle_start = _parse_date(args[0]) if len(args) > 0 and args[0] else None
+                    cycle_end = _parse_date(args[1]) if len(args) > 1 and args[1] else None
+                    print_society_settlements_terminal(society_settlements, cycle_start, cycle_end)
 
                 else:
                     raise ValueError(
@@ -340,7 +353,10 @@ def main():
 
     state = run_commands(data_dir)
 
-    print("PS-098 processing completed successfully.")
+    if state["dispute_results"]:
+        print_dispute_results_terminal(state["dispute_results"])
+
+    print("\nPS-098 processing completed successfully.")
     print(f"Pourings processed: {len(state['results'])}")
     print(f"Disputes processed: {len(state['dispute_results'])}")
     print(f"Can rejections processed: {len(state['can_rejections'])}")
