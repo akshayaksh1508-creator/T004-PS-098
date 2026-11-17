@@ -1,4 +1,4 @@
-# T004-PS-098: Dairy Milk Payment Project
+# T004-PS-098: Dairy Cooperative Milk Procurement Pricing and Member Payment Engine
 
 **Team:** T004  
 **Members:** Akshatha B and Akshay H  
