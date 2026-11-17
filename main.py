@@ -24,7 +24,7 @@ from reports import (
 from society_service import calculate_society_settlement
 
 
-DATA_DIR = Path("T004-PS-098-sample-data")
+DATA_DIR = Path("sample_data")
 TIMESTAMP_FORMAT = "%Y-%m-%d %H:%M:%S"
 
 
