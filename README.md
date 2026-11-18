@@ -43,7 +43,7 @@ python --version
 Open PowerShell or Command Prompt, go to the project folder, and run:
 
 ```powershell
-cd "D:\Akshay\Documents\T004-PS-098"
+
 python main.py
 ```
 
@@ -110,10 +110,10 @@ python -m unittest tests/test_reports.py -v
 ```
 
 ### 3. Run Planted Trap Verification
-To verify the engine against the planted traps and edge cases in the sample data (`PR-00385`, `PR-01375`, `PR-01449`, `PR-00177`, `PR-00668`, etc.):
+To verify the engine against all planted edge cases (EC-01 through EC-08) and trap scenarios in the sample data:
 
 ```powershell
-python -m _sample_data.verify_sample
+python -m sample_data.verify_sample
 ```
 
 Expected output:
@@ -129,6 +129,13 @@ OK  PR-00668 reject_reason = ADULTERATION_POSITIVE (expected ADULTERATION_POSITI
 OK  PR-00740 reject_reason = MEMBER_SUSPENDED (expected MEMBER_SUSPENDED) - suspended
 OK  PR-00856 reject_reason = MEMBER_SUSPENDED (expected MEMBER_SUSPENDED) - suspended
 OK  PR-00867 status = ACCEPTED (expected ACCEPTED) - next day after suspension
+M-004 suspended_until: 2026-01-31
+OK  M-010 loyalty_bonus = 54.25 (expected 54.25) - EC-04 exactly 15 shifts
+OK  M-003 Feb loyalty_bonus = 71.45 (expected 71.45) - EC-05 Feb 15 shifts qualifies
+OK  M-011 Feb loyalty_bonus = 0.00 (expected 0.00) - EC-05 Feb 14 shifts does not qualify
+OK  M-001 loan_recovery = 3400.00 (expected 3400.00) - EC-06 exact 2x EMI recovery
+OK  RT-007 value_used = 4.40 (expected 4.40) - EC-07 retest lower than original
+OK  S-2 commission_forfeited = True (expected True) - EC-08 3rd return at 23:59
 ```
 
 ---
@@ -136,7 +143,7 @@ OK  PR-00867 status = ACCEPTED (expected ACCEPTED) - next day after suspension
 ## 5. Project Directory Structure
 
 ```text
-D:\Akshay\Documents\T004-PS-098/
+T004-PS-098/
 ├── README.md               # User manual and test guide (this document)
 ├── DECISION_LOG.md         # Architectural & policy decision log (ADRs)
 ├── DESIGN.md               # System design specification
