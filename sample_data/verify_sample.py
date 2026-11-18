@@ -79,3 +79,41 @@ for pouring_id, field, expected, note in checks:
     print(f"{ok} {pouring_id} {field} = {actual} (expected {expected}) - {note}")
 
 print("M-004 suspended_until:", members["M-004"].suspended_until)
+
+from main import run_commands
+from pathlib import Path
+
+state = run_commands(Path(BASE))
+
+for s in state["member_summaries"]:
+    if s["member_id"] == "M-010" and str(s["cycle_start"]) == "2026-01-11":
+        actual = str(s["loyalty_bonus"])
+        ok = "OK " if actual == "54.25" and s["shifts_poured"] == 15 else "FAIL"
+        print(f"{ok} M-010 loyalty_bonus = {actual} (expected 54.25) - EC-04 exactly 15 shifts")
+
+    if s["member_id"] == "M-003" and str(s["cycle_start"]) == "2026-02-21":
+        actual = str(s["loyalty_bonus"])
+        ok = "OK " if actual == "71.45" and s["shifts_poured"] == 15 else "FAIL"
+        print(f"{ok} M-003 Feb loyalty_bonus = {actual} (expected 71.45) - EC-05 Feb 15 shifts qualifies")
+
+    if s["member_id"] == "M-011" and str(s["cycle_start"]) == "2026-02-21":
+        actual = str(s["loyalty_bonus"])
+        ok = "OK " if actual == "0.00" and s["shifts_poured"] == 14 else "FAIL"
+        print(f"{ok} M-011 Feb loyalty_bonus = {actual} (expected 0.00) - EC-05 Feb 14 shifts does not qualify")
+
+    if s["member_id"] == "M-001" and str(s["cycle_start"]) == "2026-01-01":
+        actual_emi = str(s["loan_recovery"])
+        ok = "OK " if actual_emi == "3400.00" else "FAIL"
+        print(f"{ok} M-001 loan_recovery = {actual_emi} (expected 3400.00) - EC-06 exact 2x EMI recovery")
+
+for d in state["dispute_results"]:
+    if d["test_id"] == "RT-007":
+        actual = str(d["value_used"])
+        ok = "OK " if actual == "4.40" else "FAIL"
+        print(f"{ok} RT-007 value_used = {actual} (expected 4.40) - EC-07 retest lower than original")
+
+for soc in state["society_settlements"]:
+    if soc["society_id"] == "S-2" and str(soc["cycle_start"]) == "2026-01-11":
+        ok = "OK " if soc["commission_forfeited"] is True and str(soc["commission"]) == "0.00" else "FAIL"
+        print(f"{ok} S-2 commission_forfeited = {soc['commission_forfeited']} (expected True) - EC-08 3rd return at 23:59")
+
